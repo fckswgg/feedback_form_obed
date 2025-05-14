@@ -293,13 +293,18 @@ textarea::placeholder {
   }
 
   input[type="text"],
-  input[type="tel"],
-  textarea {
+  input[type="tel"]{
     font-size: 14px;
     padding: 16px;
     border-radius: 16px;
   }
-
+  
+  textarea {
+    font-size: 14px;
+    padding: 16px;
+    border-radius: 16px;
+    min-height: 96px;
+  }
   .stars {
     gap: 8px;
   }
@@ -315,7 +320,7 @@ textarea::placeholder {
   }
 
   .variant {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
