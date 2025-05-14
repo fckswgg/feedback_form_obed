@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Обратная связь</title>
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" />
+</head>
+<body>
+  <div class="container">
+    <div class="content-wrapper">
+      <header class="header">
+        <img class="logo" src="Logo.svg" alt="Логотип" />
+        <img class="divider" src="Divider.svg" alt="Разделитель" />
+        <div class="title">Обратная связь</div>
+      </header>
+
+      <main class="main">
+        <section class="section">
+          <h2 class="section-title">Контактные данные</h2>
+          <div class="row">
+            <div class="field">
+              <label>Как вас зовут?</label>
+              <input type="text" placeholder="Сапожников Максим Александрович" />
+            </div>
+            <div class="field">
+              <label>Ваш номер телефона</label>
+              <input type="tel" placeholder="8 (999) 861-52-61" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Название ресторана</label>
+              <input type="text" placeholder="Вкусно — и точка." />
+            </div>
+            <div class="field">
+              <label>Оценка Обед.ру</label>
+              <div class="stars">
+                <img src="Star.svg" alt="звезда" class="star" />
+                <img src="Star.svg" alt="звезда" class="star" />
+                <img src="Star.svg" alt="звезда" class="star" />
+                <img src="Star.svg" alt="звезда" class="star" />
+                <img src="Star.svg" alt="звезда" class="star" />
+              </div>
+            </div>
+          </div>
+         
+          <!-- Расширение при оценке 5 -->
+          <div class="field"> 
+              <label>Ваш отзыв или предложение</label>
+              <textarea placeholder="Расскажите, что понравилось или что хотели бы видеть в будущем"></textarea>
+          </div>
+          
+          <div class="secondaryquestions">
+            <img class="divider-2-icon" alt="" src="Divider_2.svg">
+        
+            <h2 class="section-title">С какими трудностями вы столкнулись?</h2>
+        
+            <div class="list">
+              <div class="variant">
+                <div class="checkbox"></div>
+                <div class="text-block">
+                  <div class="div">Подписание договора и документооборот</div>
+                  <div class="extension">
+                    <div class="div">Что нам стоит улучшить на этом этапе?</div>
+                    <textarea class="textarea" placeholder="Опишите, что можно улучшить на этом этапе..."></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="variant">
+                <div class="checkbox"></div>
+                <div class="text-block">
+                  <div class="div">Бухгалтерия</div>
+                  <div class="extension">
+                    <div class="div">Что нам стоит улучшить на этом этапе?</div>
+                    <textarea class="textarea" placeholder="Опишите, что можно улучшить на этом этапе..."></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="variant">
+                <div class="checkbox"></div>
+                <div class="text-block">
+                  <div class="div">Техническая интеграция</div>
+                  <div class="extension">
+                    <div class="div">Что нам стоит улучшить на этом этапе?</div>
+                    <textarea class="textarea" placeholder="Опишите, что можно улучшить на этом этапе..."></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="variant">
+                <div class="checkbox"></div>
+                <div class="text-block">
+                  <div class="div">Обучение</div>
+                  <div class="extension">
+                    <div class="div">Что нам стоит улучшить на этом этапе?</div>
+                    <textarea class="textarea" placeholder="Опишите, что можно улучшить на этом этапе..."></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="variant">
+                <div class="checkbox"></div>
+                <div class="text-block">
+                  <div class="div">Личный кабинет</div>
+                  <div class="extension">
+                    <div class="div">Что нам стоит улучшить на этом этапе?</div>
+                    <textarea class="textarea" placeholder="Опишите, что можно улучшить на этом этапе..."></textarea>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="variant">
+                <div class="checkbox"></div>
+                <div class="text-block">
+                  <div class="div">Другое</div>
+                  <div class="extension">
+                    <div class="div">Что нам стоит улучшить на этом этапе?</div>
+                    <textarea class="textarea" placeholder="Опишите, что можно улучшить на этом этапе..."></textarea>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+          </div>
+        </section>
+
+        <button class="submit-button">Отправить</button>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

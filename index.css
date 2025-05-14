@@ -1,0 +1,239 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 100px 24px;
+}
+
+.content-wrapper {
+  max-width: 1080px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background-color: #fe5f00;
+  border-radius: 20px;
+  padding: 24px 48px;
+  color: #fff;
+}
+
+.logo {
+  width: 180px;
+  height: 52px;
+}
+
+.divider {
+  width: 3px;
+  height: 52px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+  padding: 0 48px;
+}
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* Увеличенный отступ между элементами внутри секции */
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px; /* вертикальный и горизонтальный отступы между полями */
+}
+
+.field {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* отступ между label и input */
+}
+
+
+label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="tel"] {
+  padding: 24px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #f9f9f9;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #b0b0b0;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+textarea{
+  font-family: 'Inter', sans-serif;
+  width: 100%; /* Ширина textarea всегда будет равна ширине родительского контейнера */
+  max-height: 180px;
+  padding: 24px; /* Паддинг внутри textarea */
+  font-size: 16px;
+  color: #000000;
+  background-color: #f9f9f9;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical; /* Пользователь сможет изменять высоту, но не ширину */
+}
+
+textarea::placeholder {
+  font-family: 'Inter', sans-serif;
+  color: #b0b0b0;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+
+.stars {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.star {
+  width: 48px;
+  height: 48px;
+}
+
+.secondaryquestions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 72px;
+  text-align: left;
+  font-size: 32px;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+}
+
+.divider-2-icon {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.title-02 {
+  position: relative;
+  font-weight: 700;
+}
+
+.list { 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 36px;
+}
+
+
+.extension { 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+
+/* Унифицированный блок варианта */
+.variant {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Стили текста */
+.text-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 32px;
+}
+
+.div {
+  position: relative;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Кастомный чекбокс */
+.checkbox {
+  width: 23px;
+  height: 23px;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid #fe5f00;
+  box-sizing: border-box;
+}
+
+
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 48px;
+  border: none;
+  border-radius: 20px;
+  background-color: #fe5f00;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+}
+
