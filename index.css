@@ -205,7 +205,13 @@ textarea::placeholder {
 
 .div {
   position: relative;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.div2 {
+  position: relative;
+  font-weight: 300;
   font-size: 16px;
 }
 
