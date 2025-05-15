@@ -4,6 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const ratingInput = form.querySelector('input[name="rating"]');
   const comment5Wrapper = document.getElementById('comment-5star-wrapper');
   const secondaryQuestions = document.getElementById('secondaryquestions');
+  const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
+  
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const extensionDiv = checkbox.closest('label').nextElementSibling;
+      if (!extensionDiv || !extensionDiv.classList.contains('extension')) return;
+  
+      if (checkbox.checked) {
+        extensionDiv.style.display = 'block';
+      } else {
+        extensionDiv.style.display = 'none';
+      }
+    });
+  });
 
   // Установка начальных значений
   stars.forEach(star => star.setAttribute('aria-checked', 'false'));
