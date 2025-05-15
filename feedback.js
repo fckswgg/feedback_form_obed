@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       extension_edu: form.querySelector('textarea[name="extension_edu"]').value.trim(),
       extension_lk: form.querySelector('textarea[name="extension_lk"]').value.trim(),
       extension_other: form.querySelector('textarea[name="extension_other"]').value.trim(),
-      rating: ratingInput ? ratingInput.value || '' : ''
+      rating: ratingInput ? Number(ratingInput.value) || 0 : 0
     };
 
     try {
