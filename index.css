@@ -223,7 +223,6 @@ textarea::placeholder {
   font-size: 16px;
   height: 30px;
   width: 100%;
-
   display: flex;
   align-items: center;   /* вертикальное центрирование */
   justify-content: flex-start; /* горизонтальное выравнивание влево */
@@ -239,13 +238,12 @@ textarea::placeholder {
 /* Кастомный чекбокс */
 .checkbox {
   appearance: none;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border: 2px solid #fe5f00;
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  margin-top: 4px;
   flex-shrink: 0;
 }
 
