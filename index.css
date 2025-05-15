@@ -142,12 +142,6 @@ textarea::placeholder {
   transition: fill 0.3s;
 }
 
-.star-btn:hover svg,
-.star-btn[aria-checked="true"] svg {
-  fill: unset; /* или любой желтый цвет для выделенной звезды */
-}
-
-
 .stars {
   display: flex;
   gap: 12px;
