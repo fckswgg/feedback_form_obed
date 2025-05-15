@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const secondaryQuestions = document.getElementById('secondaryquestions');
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-  // Раскрытие extension-блоков при выборе чекбоксов
+  // Раскрытие extension-блоков
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
       let extensionDiv = null;
