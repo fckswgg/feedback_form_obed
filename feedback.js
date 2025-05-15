@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = {
       name: form.querySelector('input[name="name"]').value.trim(),
       phone: form.querySelector('input[name="phone"]').value.trim(),
-      rating: form.querySelector('input[name="rating"]').value || '',
-      comment: form.querySelector('textarea[name="comment"]').value.trim() || '',
+      restaraunt: form.querySelector('input[name="restaraunt"]').value.trim(),
+      comment: form.querySelector('textarea[name="Extension_5star"]').value.trim() || '',
     };
   
     try {
