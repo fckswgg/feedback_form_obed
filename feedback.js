@@ -27,15 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     star.addEventListener('click', () => {
       if (ratingInput) {
-        ratingInput.value = index + 1; // Установка значения рейтинга
+        ratingInput.value = index + 1;
       }
-
+    
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
+    
+      // Показ или скрытие поля для комментария при 5 звёздах
+      const comment5Wrapper = document.getElementById('comment-5star-wrapper');
+      if (comment5Wrapper) {
+        if (index + 1 === 5) {
+          comment5Wrapper.style.display = 'block';
+        } else {
+          comment5Wrapper.style.display = 'none';
+        }
+      }
+      
+  updateStarsColor();
+});
 
-      updateStarsColor();
-    });
   });
 
   // Инициализация цвета звёзд из значения ratingInput, если оно есть
