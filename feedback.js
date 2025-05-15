@@ -29,11 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     
       const ratingInput = form.querySelector('input[name="rating"]');
-      if (ratingInput) {
-        ratingInput.value = index + 1; // Обновляем значение рейтинга
-      }
-    
-      updateStarsColor(); // Обновляем цвета
+        if (ratingInput && ratingInput.value) {
+          const ratingValue = +ratingInput.value;
+          stars.forEach((s, i) => {
+            s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
+          });
+        } else {
+          stars.forEach(s => s.setAttribute('aria-checked', 'false'));
+        }
+        updateStarsColor();
 
     });
   });
