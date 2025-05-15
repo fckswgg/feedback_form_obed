@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedback-form'); 
-
   const stars = document.querySelectorAll('.star-btn');
-  
+  const ratingInput = form.querySelector('input[name="rating"]');
+
   stars.forEach(star => star.setAttribute('aria-checked', 'false'));
-  
+
   function updateStarsColor() {
     stars.forEach(star => {
       const checked = star.getAttribute('aria-checked') === 'true';
@@ -27,29 +27,27 @@ document.addEventListener('DOMContentLoaded', () => {
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
-    
-      const ratingInput = form.querySelector('input[name="rating"]');
-        if (ratingInput && ratingInput.value) {
-          const ratingValue = +ratingInput.value;
-          stars.forEach((s, i) => {
-            s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
-          });
-        } else {
-          stars.forEach(s => s.setAttribute('aria-checked', 'false'));
-        }
-        updateStarsColor();
 
+      // Обновляем input рейтинга при клике
+      if (ratingInput) {
+        ratingInput.value = index + 1;
+      }
+
+      updateStarsColor();
     });
   });
 
-  const ratingInput = form.querySelector('input[name="rating"]');
-  if (ratingInput && ratingInput.value) {
-    const ratingValue = +ratingInput.value;
-    stars.forEach((s, i) => {
-      s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
-    });
-  } else {
-    stars.forEach(s => s.setAttribute('aria-checked', 'false'));
+  // При загрузке выставляем рейтинг из input или 0, если пусто
+  if (ratingInput) {
+    const ratingValue = Number(ratingInput.value);
+    if (ratingValue > 0 && ratingValue <= stars.length) {
+      stars.forEach((s, i) => {
+        s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
+      });
+    } else {
+      ratingInput.value = '0';
+      stars.forEach(s => s.setAttribute('aria-checked', 'false'));
+    }
   }
   updateStarsColor();
 
