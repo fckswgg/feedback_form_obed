@@ -26,9 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}
       });
-  
-      alert('Спасибо за отзыв!');  // Просто подтверждаем отправку, не проверяя ответ
-      form.reset();
+
+              // Редирект сразу после отправки, без ожидания ответа
+        window.location.href = 'https://obed.ru';
+    
+      } catch (error) {
+        alert('Ошибка сети: ' + error.message);
+      }
   
     } catch (error) {
       alert('Ошибка сети: ' + error.message);
