@@ -4,18 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const ratingInput = form.querySelector('input[name="rating"]');
   const comment5Wrapper = document.getElementById('comment-5star-wrapper');
   const secondaryQuestions = document.getElementById('secondaryquestions');
-  const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
-  
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  // Раскрытие extension-блоков при выборе чекбоксов
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
-      const extensionDiv = checkbox.closest('label').nextElementSibling;
-      if (!extensionDiv || !extensionDiv.classList.contains('extension')) return;
-  
-      if (checkbox.checked) {
-        extensionDiv.style.display = 'block';
-      } else {
-        extensionDiv.style.display = 'none';
+      let extensionDiv = null;
+
+      if (checkbox.closest('.variant')) {
+        extensionDiv = checkbox.closest('.variant').querySelector('.extension');
       }
+
+      if (!extensionDiv) return;
+
+      extensionDiv.style.display = checkbox.checked ? 'block' : 'none';
     });
   });
 
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Обработчики наведения и клика по звездам
+  // Обработчики наведения и клика по звёздам
   stars.forEach((star, index) => {
     star.addEventListener('mouseenter', () => {
       stars.forEach((s, i) => {
@@ -37,27 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    star.addEventListener('mouseleave', () => {
-      updateStarsColor();
-    });
+    star.addEventListener('mouseleave', updateStarsColor);
 
     star.addEventListener('click', () => {
       const rating = index + 1;
 
-      if (ratingInput) {
-        ratingInput.value = rating;
-      }
+      if (ratingInput) ratingInput.value = rating;
 
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
 
-      // Показ/скрытие блока для комментария при 5 звёздах
       if (comment5Wrapper) {
         comment5Wrapper.style.display = rating === 5 ? 'block' : 'none';
       }
 
-      // Показ/скрытие дополнительных вопросов при оценке 4 и ниже
       if (secondaryQuestions) {
         secondaryQuestions.style.display = rating <= 4 ? 'block' : 'none';
       }
@@ -66,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Инициализация цвета звёзд из значения ratingInput, если оно есть
+  // Инициализация цвета звёзд из значения ratingInput
   if (ratingInput) {
     const ratingValue = Number(ratingInput.value);
     if (ratingValue >= 1 && ratingValue <= stars.length) {
@@ -81,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (secondaryQuestions) {
         secondaryQuestions.style.display = ratingValue <= 4 ? 'block' : 'none';
       }
-
     } else {
       ratingInput.value = '0';
       stars.forEach(s => s.setAttribute('aria-checked', 'false'));
@@ -117,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       window.location.href = 'https://obed.ru';
-
     } catch (error) {
       alert('Ошибка сети: ' + error.message);
     }
