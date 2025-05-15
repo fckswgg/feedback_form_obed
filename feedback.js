@@ -14,23 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyGHSXBuqjpyW-AC1zOQENLMtLjzhtU-4pnCrTaEkqSDi7fPn0Z71FVR10jOGyIgmk/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbyGHSXBuqjpyW-AC1zOQENLMtLjzhtU-4pnCrTaEkqSDi7fPn0Z71FVR10jOGyIgmk/exec', {
         method: 'POST',
-        mode: 'cors',
+        mode: 'no-cors',
         body: JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}
       });
-
-      const result = await response.json();
   
-      if (result.result === 'success') {
-        alert('Спасибо за отзыв!');
-        form.reset();
-      } else {
-        alert('Ошибка при отправке: ' + result.error);
-      }
+      alert('Спасибо за отзыв!');  // Просто подтверждаем отправку, не проверяя ответ
+      form.reset();
+  
     } catch (error) {
       alert('Ошибка сети: ' + error.message);
     }
   });
+
 });
