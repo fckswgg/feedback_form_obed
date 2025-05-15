@@ -11,6 +11,10 @@ body {
   padding: 100px 24px;
 }
 
+.extension {
+  display: none;
+}
+
 .content-wrapper {
   max-width: 1080px;
   width: 100%;
