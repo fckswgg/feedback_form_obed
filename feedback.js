@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('feedback-form'); // ← Удалил лишний #
+  const form = document.getElementById('feedback-form'); // Убрала лишний #
 
   console.log(document.querySelector('#feedback-form'));
   
@@ -27,16 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {'Content-Type': 'application/json'}
       });
 
-              // Редирект сразу после отправки, без ожидания ответа
-        window.location.href = 'https://obed.ru';
-    
-      } catch (error) {
-        alert('Ошибка сети: ' + error.message);
-      }
-  
+      // Редирект сразу после отправки, без ожидания ответа
+      window.location.href = 'https://obed.ru';
+
     } catch (error) {
       alert('Ошибка сети: ' + error.message);
     }
   });
-
 });
