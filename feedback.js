@@ -1,14 +1,16 @@
-const form = document.querySelector('form'); // или твой селектор
+const form = document.querySelector('form');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const data = {
-    name: form.querySelector('input[name="name"]').value,
-    phone: form.querySelector('input[name="phone"]').value,
-    rating: form.querySelector('input[name="rating"]').value,
-    comment: form.querySelector('textarea[name="comment"]').value,
+    name: form.querySelector('input[name="name"]').value.trim(),
+    phone: form.querySelector('input[name="phone"]').value.trim(),
+    rating: form.querySelector('input[name="rating"]').value || '',
+    comment: form.querySelector('textarea[name="comment"]').value.trim() || '',
   };
+
+  // Здесь можно добавить проверку обязательных полей
 
   try {
     const response = await fetch('https://script.google.com/macros/s/AKfycbyGHSXBuqjpyW-AC1zOQENLMtLjzhtU-4pnCrTaEkqSDi7fPn0Z71FVR10jOGyIgmk/exec', {
@@ -16,16 +18,15 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(data),
       headers: {'Content-Type': 'application/json'}
     });
-    
     const result = await response.json();
-    
+
     if (result.result === 'success') {
       alert('Спасибо за отзыв!');
       form.reset();
     } else {
       alert('Ошибка при отправке: ' + result.error);
     }
-  } catch (err) {
-    alert('Ошибка сети: ' + err.message);
+  } catch (error) {
+    alert('Ошибка сети: ' + error.message);
   }
 });
