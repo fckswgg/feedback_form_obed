@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateStarsColor() {
     stars.forEach(star => {
       const checked = star.getAttribute('aria-checked') === 'true';
-      star.querySelector('svg').style.fill = checked ? 'gold' : '#ccc';
+      star.querySelector('svg').style.fill = checked ? '#fe5f00' : '#ccc';
     });
   }
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   stars.forEach((star, index) => {
     star.addEventListener('mouseenter', () => {
       stars.forEach((s, i) => {
-        s.querySelector('svg').style.fill = i <= index ? 'gold' : '#ccc';
+        s.querySelector('svg').style.fill = i <= index ? '#fe5f00' : '#ccc';
       });
     });
 
