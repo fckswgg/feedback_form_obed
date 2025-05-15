@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedback-form');
   const stars = document.querySelectorAll('.star-btn');
   const ratingInput = form.querySelector('input[name="rating"]');
+  const comment5Wrapper = document.getElementById('comment-5star-wrapper');
+  const secondaryQuestions = document.getElementById('secondaryquestions');
 
   // Установка начальных значений
   stars.forEach(star => star.setAttribute('aria-checked', 'false'));
@@ -26,27 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     star.addEventListener('click', () => {
+      const rating = index + 1;
+
       if (ratingInput) {
-        ratingInput.value = index + 1;
+        ratingInput.value = rating;
       }
-    
+
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
-    
-      // Показ или скрытие поля для комментария при 5 звёздах
-      const comment5Wrapper = document.getElementById('comment-5star-wrapper');
-      if (comment5Wrapper) {
-        if (index + 1 === 5) {
-          comment5Wrapper.style.display = 'block';
-        } else {
-          comment5Wrapper.style.display = 'none';
-        }
-      }
-      
-  updateStarsColor();
-});
 
+      // Показ/скрытие блока для комментария при 5 звёздах
+      if (comment5Wrapper) {
+        comment5Wrapper.style.display = rating === 5 ? 'block' : 'none';
+      }
+
+      // Показ/скрытие дополнительных вопросов при оценке 4 и ниже
+      if (secondaryQuestions) {
+        secondaryQuestions.style.display = rating <= 4 ? 'block' : 'none';
+      }
+
+      updateStarsColor();
+    });
   });
 
   // Инициализация цвета звёзд из значения ratingInput, если оно есть
@@ -56,6 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
       });
+
+      if (comment5Wrapper) {
+        comment5Wrapper.style.display = ratingValue === 5 ? 'block' : 'none';
+      }
+
+      if (secondaryQuestions) {
+        secondaryQuestions.style.display = ratingValue <= 4 ? 'block' : 'none';
+      }
+
     } else {
       ratingInput.value = '0';
       stars.forEach(s => s.setAttribute('aria-checked', 'false'));
