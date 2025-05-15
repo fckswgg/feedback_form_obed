@@ -10,7 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
       name: form.querySelector('input[name="name"]').value.trim(),
       phone: form.querySelector('input[name="phone"]').value.trim(),
       restaraunt: form.querySelector('input[name="restaraunt"]').value.trim(),
-      extension_5star: form.querySelector('textarea[name="extension_5star"]').value.trim() || '',
+      extension_5star: form.querySelector('textarea[name="extension_5star"]').value.trim(),
+      extension_doc: form.querySelector('textarea[name="extension_doc"]').value.trim(),
+      extension_buh: form.querySelector('textarea[name="extension_buh"]').value.trim(),
+      extension_teh: form.querySelector('textarea[name="extension_teh"]').value.trim(),
+      extension_edu: form.querySelector('textarea[name="extension_edu"]').value.trim(),
+      extension_lk: form.querySelector('textarea[name="extension_lk"]').value.trim(),
+      extension_other: form.querySelector('textarea[name="extension_other"]').value.trim()
     };
   
     try {
