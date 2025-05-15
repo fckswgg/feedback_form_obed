@@ -1,21 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('feedback-form'); 
+  const form = document.getElementById('feedback-form');
   const stars = document.querySelectorAll('.star-btn');
   const ratingInput = form.querySelector('input[name="rating"]');
-  
-  // Если значение рейтинга пустое, нулевое или невалидное — сбрасываем на '0'
-  if (!ratingInput || !ratingInput.value || Number(ratingInput.value) < 1 || Number(ratingInput.value) > stars.length) {
-    if (ratingInput) {
-      ratingInput.value = '0';
-    }
-    stars.forEach(s => s.setAttribute('aria-checked', 'false'));
-  } else {
-    const ratingValue = Number(ratingInput.value);
-    stars.forEach((s, i) => {
-      s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
-    });
-  }
-  updateStarsColor();
+
+  // Установка начальных значений
+  stars.forEach(star => star.setAttribute('aria-checked', 'false'));
 
   function updateStarsColor() {
     stars.forEach(star => {
@@ -24,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Обработчики наведения и клика по звездам
   stars.forEach((star, index) => {
     star.addEventListener('mouseenter', () => {
       stars.forEach((s, i) => {
@@ -36,23 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     star.addEventListener('click', () => {
+      if (ratingInput) {
+        ratingInput.value = index + 1; // Установка значения рейтинга
+      }
+
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
-
-      // Обновляем input рейтинга при клике
-      if (ratingInput) {
-        ratingInput.value = index + 1;
-      }
 
       updateStarsColor();
     });
   });
 
-  // При загрузке выставляем рейтинг из input или 0, если пусто
+  // Инициализация цвета звёзд из значения ratingInput, если оно есть
   if (ratingInput) {
     const ratingValue = Number(ratingInput.value);
-    if (ratingValue > 0 && ratingValue <= stars.length) {
+    if (ratingValue >= 1 && ratingValue <= stars.length) {
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
       });
@@ -61,8 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
       stars.forEach(s => s.setAttribute('aria-checked', 'false'));
     }
   }
+
   updateStarsColor();
 
+  // Отправка формы
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
