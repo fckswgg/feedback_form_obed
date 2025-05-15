@@ -144,7 +144,7 @@ textarea::placeholder {
 
 .star-btn:hover svg,
 .star-btn[aria-checked="true"] svg {
-  fill: #fe5f00; /* или любой желтый цвет для выделенной звезды */
+  fill: unset; /* или любой желтый цвет для выделенной звезды */
 }
 
 
