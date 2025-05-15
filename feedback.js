@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedback-form'); 
 
   const stars = document.querySelectorAll('.star-btn');
-
+  
+  stars.forEach(star => star.setAttribute('aria-checked', 'false'));
+  
   function updateStarsColor() {
     stars.forEach(star => {
       const checked = star.getAttribute('aria-checked') === 'true';
