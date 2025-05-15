@@ -1,11 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('feedback-form'); // Убрала лишний #
-
-  console.log(document.querySelector('#feedback-form'));
+  const form = document.getElementById('feedback-form'); 
 
   const stars = document.querySelectorAll('.star-btn');
 
-  // Функция обновления цвета звёзд по атрибуту aria-checked
   function updateStarsColor() {
     stars.forEach(star => {
       const checked = star.getAttribute('aria-checked') === 'true';
@@ -13,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // При наведении подсвечиваем звезды до текущей включительно
   stars.forEach((star, index) => {
     star.addEventListener('mouseenter', () => {
       stars.forEach((s, i) => {
@@ -26,36 +22,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     star.addEventListener('click', () => {
-      // Обновляем aria-checked у всех звезд
       stars.forEach((s, i) => {
         s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
 
-      // Устанавливаем значение в скрытый input
       const ratingInput = form.querySelector('input[name="rating"]');
-      if (ratingInput && ratingInput.value) {
-        const ratingValue = +ratingInput.value;
-        stars.forEach((s, i) => {
-          s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
-        });
-      } else {
-        // Если рейтинга нет, сбросить все aria-checked в false
-        stars.forEach(s => s.setAttribute('aria-checked', 'false'));
+      if (ratingInput) {
+        ratingInput.value = index + 1;
       }
-      updateStarsColor();
 
+      updateStarsColor();
     });
   });
 
-  // При загрузке страницы обновляем цвет в зависимости от уже выбранного рейтинга (если есть)
   const ratingInput = form.querySelector('input[name="rating"]');
   if (ratingInput && ratingInput.value) {
     const ratingValue = +ratingInput.value;
     stars.forEach((s, i) => {
       s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
     });
-    updateStarsColor();
+  } else {
+    stars.forEach(s => s.setAttribute('aria-checked', 'false'));
   }
+  updateStarsColor();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -82,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      // Редирект сразу после отправки, без ожидания ответа
       window.location.href = 'https://obed.ru';
 
     } catch (error) {
