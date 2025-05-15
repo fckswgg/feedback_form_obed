@@ -137,6 +137,17 @@ textarea::placeholder {
   /* Убираем серый фон и обводку */
 }
 
+.star-btn svg {
+  fill: #ccc; /* светло-серый цвет по умолчанию */
+  transition: fill 0.3s;
+}
+
+.star-btn:hover svg,
+.star-btn[aria-checked="true"] svg {
+  fill: gold; /* или любой желтый цвет для выделенной звезды */
+}
+
+
 .stars {
   display: flex;
   gap: 12px;
