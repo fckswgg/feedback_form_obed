@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const secondaryQuestions = document.getElementById('secondaryquestions');
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
+  // Скрыть все extension-блоки при загрузке
+  document.querySelectorAll('.extension').forEach(el => {
+    el.style.display = 'none';
+  });
+
+
   // Раскрытие extension-блоков НУ ОТПРАВЬ ТЫ УЖЕ ПУШ ДО ВЕРСЕЛЯ
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
