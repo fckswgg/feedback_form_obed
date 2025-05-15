@@ -2,10 +2,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedback-form'); // Убрала лишний #
 
   console.log(document.querySelector('#feedback-form'));
-  
+
+  // Обработка кликов по звёздам и установка aria-checked
+  const stars = document.querySelectorAll('.star-btn');
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const value = star.getAttribute('data-value');
+
+      // Снимаем выделение со всех кнопок
+      stars.forEach(s => s.setAttribute('aria-checked', 'false'));
+
+      // Устанавливаем выделение для выбранной и всех ниже
+      stars.forEach(s => {
+        if (+s.getAttribute('data-value') <= +value) {
+          s.setAttribute('aria-checked', 'true');
+        }
+      });
+
+      // Устанавливаем значение в скрытый input
+      const ratingInput = form.querySelector('input[name="rating"]');
+      if (ratingInput) {
+        ratingInput.value = value;
+      }
+    });
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-  
+
     const data = {
       name: form.querySelector('input[name="name"]').value.trim(),
       phone: form.querySelector('input[name="phone"]').value.trim(),
@@ -16,9 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
       extension_teh: form.querySelector('textarea[name="extension_teh"]').value.trim(),
       extension_edu: form.querySelector('textarea[name="extension_edu"]').value.trim(),
       extension_lk: form.querySelector('textarea[name="extension_lk"]').value.trim(),
-      extension_other: form.querySelector('textarea[name="extension_other"]').value.trim()
+      extension_other: form.querySelector('textarea[name="extension_other"]').value.trim(),
+      rating: form.querySelector('input[name="rating"]').value || ''  // Добавляем рейтинг
     };
-  
+
     try {
       await fetch('https://script.google.com/macros/s/AKfycbyGHSXBuqjpyW-AC1zOQENLMtLjzhtU-4pnCrTaEkqSDi7fPn0Z71FVR10jOGyIgmk/exec', {
         method: 'POST',
