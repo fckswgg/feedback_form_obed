@@ -3,29 +3,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log(document.querySelector('#feedback-form'));
 
-  // Обработка кликов по звёздам и установка aria-checked
   const stars = document.querySelectorAll('.star-btn');
-  stars.forEach(star => {
+
+  // Функция обновления цвета звёзд по атрибуту aria-checked
+  function updateStarsColor() {
+    stars.forEach(star => {
+      const checked = star.getAttribute('aria-checked') === 'true';
+      star.querySelector('svg').style.fill = checked ? 'gold' : '#ccc';
+    });
+  }
+
+  // При наведении подсвечиваем звезды до текущей включительно
+  stars.forEach((star, index) => {
+    star.addEventListener('mouseenter', () => {
+      stars.forEach((s, i) => {
+        s.querySelector('svg').style.fill = i <= index ? 'gold' : '#ccc';
+      });
+    });
+
+    star.addEventListener('mouseleave', () => {
+      updateStarsColor();
+    });
+
     star.addEventListener('click', () => {
-      const value = star.getAttribute('data-value');
-
-      // Снимаем выделение со всех кнопок
-      stars.forEach(s => s.setAttribute('aria-checked', 'false'));
-
-      // Устанавливаем выделение для выбранной и всех ниже
-      stars.forEach(s => {
-        if (+s.getAttribute('data-value') <= +value) {
-          s.setAttribute('aria-checked', 'true');
-        }
+      // Обновляем aria-checked у всех звезд
+      stars.forEach((s, i) => {
+        s.setAttribute('aria-checked', i <= index ? 'true' : 'false');
       });
 
       // Устанавливаем значение в скрытый input
       const ratingInput = form.querySelector('input[name="rating"]');
       if (ratingInput) {
-        ratingInput.value = value;
+        ratingInput.value = index + 1;
       }
+
+      updateStarsColor();
     });
   });
+
+  // При загрузке страницы обновляем цвет в зависимости от уже выбранного рейтинга (если есть)
+  const ratingInput = form.querySelector('input[name="rating"]');
+  if (ratingInput && ratingInput.value) {
+    const ratingValue = +ratingInput.value;
+    stars.forEach((s, i) => {
+      s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
+    });
+    updateStarsColor();
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -41,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       extension_edu: form.querySelector('textarea[name="extension_edu"]').value.trim(),
       extension_lk: form.querySelector('textarea[name="extension_lk"]').value.trim(),
       extension_other: form.querySelector('textarea[name="extension_other"]').value.trim(),
-      rating: form.querySelector('input[name="rating"]').value || ''  // Добавляем рейтинг
+      rating: ratingInput ? ratingInput.value || '' : ''
     };
 
     try {
@@ -49,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         mode: 'no-cors',
         body: JSON.stringify(data),
-        headers: {'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
       });
 
       // Редирект сразу после отправки, без ожидания ответа
