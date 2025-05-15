@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: form.querySelector('input[name="name"]').value.trim(),
       phone: form.querySelector('input[name="phone"]').value.trim(),
       restaraunt: form.querySelector('input[name="restaraunt"]').value.trim(),
-      comment: form.querySelector('textarea[name="extension_5star"]').value.trim() || '',
+      extension_5star: form.querySelector('textarea[name="extension_5star"]').value.trim() || '',
     };
   
     try {
