@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('#feedback-form');
+  const form = document.getElementById('feedback-form'); // ← Удалил лишний #
 
   console.log(document.querySelector('#feedback-form'));
   
@@ -13,14 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
       comment: form.querySelector('textarea[name="comment"]').value.trim() || '',
     };
   
-    // Здесь можно добавить проверку обязательных полей
-  
     try {
       const response = await fetch('https://script.google.com/macros/s/AKfycbyGHSXBuqjpyW-AC1zOQENLMtLjzhtU-4pnCrTaEkqSDi7fPn0Z71FVR10jOGyIgmk/exec', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}
       });
+
       const result = await response.json();
   
       if (result.result === 'success') {
@@ -33,3 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Ошибка сети: ' + error.message);
     }
   });
+});
