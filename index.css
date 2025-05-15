@@ -231,12 +231,19 @@ textarea::placeholder {
 
 /* Кастомный чекбокс */
 .checkbox {
-  width: 23px;
-  height: 23px;
-  position: relative;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fe5f00;
   border-radius: 50%;
-  border: 1px solid #fe5f00;
-  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.checkbox:checked {
+  background-color: #fe5f00;
 }
 
 .submit-button {
