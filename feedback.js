@@ -2,8 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedback-form'); 
   const stars = document.querySelectorAll('.star-btn');
   const ratingInput = form.querySelector('input[name="rating"]');
-
-  stars.forEach(star => star.setAttribute('aria-checked', 'false'));
+  
+  // Если значение рейтинга пустое, нулевое или невалидное — сбрасываем на '0'
+  if (!ratingInput || !ratingInput.value || Number(ratingInput.value) < 1 || Number(ratingInput.value) > stars.length) {
+    if (ratingInput) {
+      ratingInput.value = '0';
+    }
+    stars.forEach(s => s.setAttribute('aria-checked', 'false'));
+  } else {
+    const ratingValue = Number(ratingInput.value);
+    stars.forEach((s, i) => {
+      s.setAttribute('aria-checked', i < ratingValue ? 'true' : 'false');
+    });
+  }
+  updateStarsColor();
 
   function updateStarsColor() {
     stars.forEach(star => {
